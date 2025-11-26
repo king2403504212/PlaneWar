@@ -1,9 +1,10 @@
-import { _decorator, BoxCollider2D, Collider2D, Component, Node, Prefab, RigidBody2D } from 'cc';
+import { _decorator,  Component, Animation } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('enemyControl')
 export class enemyControl extends Component {
     private isDead :boolean= false;
+    private hasPlayed : boolean = false;
     start() {
     }
 
@@ -19,9 +20,20 @@ export class enemyControl extends Component {
     die() {
         if(this.isDead) return;
         this.isDead = true;
-        setTimeout(()=>{
-            this.node.destroy();
-        }, 200)
+        if(!this.hasPlayed) {
+            this.playDead();
+        }
+        setTimeout(() => {            
+            this.node.destroy();  
+        }, 420)
+}
+            
+
+    // 销毁动画
+    playDead(){
+        const anim = this.node.getComponent(Animation);
+        anim.play("destroy");
+        this.hasPlayed = true;
     }
     
 }   

@@ -1,17 +1,17 @@
 [
   {
     "__type__": "cc.AnimationClip",
-    "_name": "fly",
+    "_name": "destroy",
     "_objFlags": 0,
     "__editorExtras__": {
       "embeddedPlayerGroups": []
     },
     "_native": "",
     "sample": 60,
-    "speed": 0.3,
+    "speed": 0.2,
     "wrapMode": 2,
     "enableTrsBlending": false,
-    "_duration": 0.03333333333333333,
+    "_duration": 0.11666666666666667,
     "_hash": 500763545,
     "_tracks": [
       {
@@ -62,15 +62,40 @@
     "__type__": "cc.ObjectCurve",
     "_times": [
       0,
-      0.016666666666666666
+      0.016666666666666666,
+      0.03333333333333333,
+      0.05,
+      0.06666666666666667,
+      0.08333333333333333,
+      0.1
     ],
     "_values": [
       {
-        "__uuid__": "75f6efa1-4bbc-46f9-9a01-f6c923cacbe9@f9941",
+        "__uuid__": "d4cb81bf-1d3f-4686-99d9-b6bfbaf509cd@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "5eee2dd8-5987-41f9-ab04-b1fd829d5666@f9941",
+        "__uuid__": "b9853582-6baa-4342-b42f-d013613190a9@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "60470b6c-6a6f-4035-9a42-0a98ad32cc71@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "d367a0fa-8d58-48b9-84f2-eb95a0078eef@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "9d548042-a026-45c2-ad37-1e54d9ac9e15@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "9d548042-a026-45c2-ad37-1e54d9ac9e15@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "9d548042-a026-45c2-ad37-1e54d9ac9e15@f9941",
         "__expectedType__": "cc.SpriteFrame"
       }
     ]
