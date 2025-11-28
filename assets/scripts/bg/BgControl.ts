@@ -1,6 +1,7 @@
 import { _decorator, CCObject, Component, Node, Prefab, UITransform, instantiate, Contact2DType, Collider2D, PhysicsSystem2D } from 'cc';
 import { enemyControl } from '../enemy/enemyControl';
 import { BulletControl } from '../bullet/BulletControl';
+import { playerController } from '../hero/playerController';
 const { ccclass, property } = _decorator;
 
 @ccclass('BgControl')
@@ -35,15 +36,59 @@ export class BgControl extends Component {
     }
 
     // 碰撞开始的回调函数
-    onBeginContact(self: Collider2D, other: Collider2D){
-        if((other.tag === 1 && self.tag === 0) ){
-            other.getComponent(enemyControl).die();
-            self.getComponent(BulletControl).die();
-        }else if((other.tag === 0 && self.tag === 1)){
-            self.getComponent(enemyControl).die();
-            other.getComponent(BulletControl).die();
+    onBeginContact(self: Collider2D, other: Collider2D) {
+    // 1️⃣ 节点有效性判断
+    if (!self.node || !self.node.isValid || !other.node || !other.node.isValid) return;
+
+    const selfEnemy = self.getComponent(enemyControl);
+    const otherEnemy = other.getComponent(enemyControl);
+
+    const selfBullet = self.getComponent(BulletControl);
+    const otherBullet = other.getComponent(BulletControl);
+
+    const selfPlayer = self.getComponent(playerController);
+    const otherPlayer = other.getComponent(playerController);
+
+    // 🟥 bullet vs enemy（子弹打敌人）
+    if ((selfEnemy && otherBullet) || (selfBullet && otherEnemy)) {
+        const enemyComp = selfEnemy || otherEnemy;
+        const bulletComp = selfBullet || otherBullet;
+
+        if (enemyComp && !enemyComp.isDead) {
+            enemyComp.die();
         }
+
+        if (bulletComp && !bulletComp.isDead) {
+            bulletComp.die();
+        }
+        return;
     }
+
+    // 🟦 enemy vs player（敌人撞玩家）
+    if ((selfEnemy && otherPlayer) || (selfPlayer && otherEnemy)) {
+        const enemyComp = selfEnemy || otherEnemy;
+        const playerComp = selfPlayer || otherPlayer;
+
+        if (enemyComp && !enemyComp.isDead) {
+            enemyComp.die();
+        }
+
+        if (playerComp) {
+            playerComp.collision();   // 玩家不一定有 isDead 判断
+        }
+        return;
+    }
+
+    // 🟨 bullet vs player（可选，看你是否允许子弹伤害玩家）
+    if ((selfBullet && otherPlayer) || (selfPlayer && otherBullet)) {
+        const playerComp = selfPlayer || otherPlayer;
+        if (playerComp) playerComp.collision();
+        if (selfBullet) selfBullet.die();
+        if (otherBullet) otherBullet.die();
+        return;
+    }
+}
+
 
     // 随机生成云朵
     cloudSpawn(){ 

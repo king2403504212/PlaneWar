@@ -24,6 +24,9 @@ export class playerController extends Component {
     update(deltaTime: number) {
         
     }
+    collision(){
+        console.log("检测到碰撞");
+    }
 }
 
 

@@ -3,7 +3,7 @@ const { ccclass, property } = _decorator;
 
 @ccclass('BulletControl')
 export class BulletControl extends Component {  
-    private isDead :boolean= false;
+    public isDead :boolean= false;
 
     start() {
 

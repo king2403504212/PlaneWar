@@ -1,10 +1,16 @@
-import { _decorator,  Component, Animation } from 'cc';
+import { _decorator,  Component, Animation, Collider2D, RigidBody2D, AnimationClip, AudioClip } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('enemyControl')
 export class enemyControl extends Component {
-    private isDead :boolean= false;
+    public isDead :boolean= false;
     private hasPlayed : boolean = false;
+    @property(AnimationClip)
+    enemyDestroy : AnimationClip = null;
+
+    @property(AudioClip)
+    bomb_bullet : AudioClip = null;
+
     start() {
     }
 
@@ -18,6 +24,11 @@ export class enemyControl extends Component {
 
     // 延迟销毁敌机
     die() {
+        const col = this.getComponent(Collider2D);
+        const body = this.getComponent(RigidBody2D);
+        if (col) col.enabled = false;
+        if (body) body.enabled = false;
+        this.node.getComponent(Animation).defaultClip = this.enemyDestroy;
         if(this.isDead) return;
         this.isDead = true;
         if(!this.hasPlayed) {
@@ -26,13 +37,14 @@ export class enemyControl extends Component {
         setTimeout(() => {            
             this.node.destroy();  
         }, 420)
-}
+    }
             
+    
 
     // 销毁动画
     playDead(){
         const anim = this.node.getComponent(Animation);
-        anim.play("destroy");
+        anim.play("");
         this.hasPlayed = true;
     }
     

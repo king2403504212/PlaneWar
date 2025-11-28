@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "airplane0",
+    "_name": "fly",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_native": "",
@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "airplane0",
+    "_name": "fly",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": null,
@@ -37,10 +37,13 @@
       },
       {
         "__id__": 12
+      },
+      {
+        "__id__": 14
       }
     ],
     "_prefab": {
-      "__id__": 14
+      "__id__": 16
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -85,8 +88,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 49,
-      "height": 35
+      "width": 41,
+      "height": 33
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -122,7 +125,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "d4cb81bf-1d3f-4686-99d9-b6bfbaf509cd@f9941",
+      "__uuid__": "41251d50-a987-4ff3-b4db-978e396f5a92@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
@@ -157,7 +160,7 @@
       "__id__": 7
     },
     "enemyDestroy": {
-      "__uuid__": "46841da5-9a0f-47ec-bf4b-a6520513f39d",
+      "__uuid__": "c7330fe2-b2ad-47a6-9f5b-abbc7b3667bc",
       "__expectedType__": "cc.AnimationClip"
     },
     "_id": ""
@@ -246,15 +249,23 @@
     "__prefab": {
       "__id__": 13
     },
-    "playOnLoad": false,
+    "playOnLoad": true,
     "_clips": [
       {
         "__uuid__": "46841da5-9a0f-47ec-bf4b-a6520513f39d",
         "__expectedType__": "cc.AnimationClip"
+      },
+      {
+        "__uuid__": "c7330fe2-b2ad-47a6-9f5b-abbc7b3667bc",
+        "__expectedType__": "cc.AnimationClip"
+      },
+      {
+        "__uuid__": "302ad1d3-fec5-4c21-b30c-d8001989da78",
+        "__expectedType__": "cc.AnimationClip"
       }
     ],
     "_defaultClip": {
-      "__uuid__": "46841da5-9a0f-47ec-bf4b-a6520513f39d",
+      "__uuid__": "302ad1d3-fec5-4c21-b30c-d8001989da78",
       "__expectedType__": "cc.AnimationClip"
     },
     "_id": ""
@@ -262,6 +273,28 @@
   {
     "__type__": "cc.CompPrefabInfo",
     "fileId": "a27SfabidNzIyKfpX/tYbl"
+  },
+  {
+    "__type__": "cc.AudioSource",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 15
+    },
+    "_clip": null,
+    "_loop": false,
+    "_playOnAwake": false,
+    "_volume": 1,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "fcQFGbGGdLjq+ITKUdCkTp"
   },
   {
     "__type__": "cc.PrefabInfo",
