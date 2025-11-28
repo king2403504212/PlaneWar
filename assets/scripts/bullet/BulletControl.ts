@@ -4,9 +4,7 @@ const { ccclass, property } = _decorator;
 @ccclass('BulletControl')
 export class BulletControl extends Component {  
     public isDead :boolean= false;
-
     start() {
-
     }
 
     update(deltaTime: number) {
@@ -23,7 +21,7 @@ export class BulletControl extends Component {
         if(this.isDead) return;
         this.isDead = true;
         setTimeout(() =>{
-        this.node?.destroy?.();
+        this.node.destroy();
         }, 10)
     }
 }

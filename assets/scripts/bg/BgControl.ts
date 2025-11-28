@@ -2,6 +2,7 @@ import { _decorator, CCObject, Component, Node, Prefab, UITransform, instantiate
 import { enemyControl } from '../enemy/enemyControl';
 import { BulletControl } from '../bullet/BulletControl';
 import { playerController } from '../hero/playerController';
+import { GlobalEventManager } from '../utils/GlobalEventManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('BgControl')
@@ -55,6 +56,7 @@ export class BgControl extends Component {
         const bulletComp = selfBullet || otherBullet;
 
         if (enemyComp && !enemyComp.isDead) {
+            GlobalEventManager.emit(GlobalEventManager.EVENT.BOMB_BULLET);
             enemyComp.die();
         }
 
@@ -70,6 +72,7 @@ export class BgControl extends Component {
         const playerComp = selfPlayer || otherPlayer;
 
         if (enemyComp && !enemyComp.isDead) {
+             GlobalEventManager.emit(GlobalEventManager.EVENT.BOMB_PLAYER);
             enemyComp.die();
         }
 
@@ -79,14 +82,14 @@ export class BgControl extends Component {
         return;
     }
 
-    // 🟨 bullet vs player（可选，看你是否允许子弹伤害玩家）
-    if ((selfBullet && otherPlayer) || (selfPlayer && otherBullet)) {
-        const playerComp = selfPlayer || otherPlayer;
-        if (playerComp) playerComp.collision();
-        if (selfBullet) selfBullet.die();
-        if (otherBullet) otherBullet.die();
-        return;
-    }
+    // // 🟨 bullet vs player（可选，看你是否允许子弹伤害玩家）
+    // if ((selfBullet && otherPlayer) || (selfPlayer && otherBullet)) {
+    //     const playerComp = selfPlayer || otherPlayer;
+    //     if (playerComp) playerComp.collision();
+    //     if (selfBullet) selfBullet.die();
+    //     if (otherBullet) otherBullet.die();
+    //     return;
+    // }
 }
 
 

@@ -163,6 +163,14 @@
       "__uuid__": "c7330fe2-b2ad-47a6-9f5b-abbc7b3667bc",
       "__expectedType__": "cc.AnimationClip"
     },
+    "bomb_bullet": {
+      "__uuid__": "bbf99f7a-1f36-47fd-a33f-4116baa8d3da",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "bomb_player": {
+      "__uuid__": "bf29188b-4261-4fb4-a85d-8ac178e58f16",
+      "__expectedType__": "cc.AudioClip"
+    },
     "_id": ""
   },
   {

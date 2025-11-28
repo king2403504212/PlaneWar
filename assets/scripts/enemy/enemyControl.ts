@@ -1,17 +1,25 @@
-import { _decorator,  Component, Animation, Collider2D, RigidBody2D, AnimationClip, AudioClip } from 'cc';
+import { _decorator,  Component, Animation, Collider2D, RigidBody2D, AnimationClip, AudioClip, AudioSource } from 'cc';
+import { GlobalEventManager } from '../utils/GlobalEventManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('enemyControl')
 export class enemyControl extends Component {
     public isDead :boolean= false;
     private hasPlayed : boolean = false;
+    private audioSource : AudioSource = null;
     @property(AnimationClip)
     enemyDestroy : AnimationClip = null;
 
     @property(AudioClip)
     bomb_bullet : AudioClip = null;
+    
+    @property(AudioClip)
+    bomb_player : AudioClip = null;
 
     start() {
+        GlobalEventManager.on(GlobalEventManager.EVENT.BOMB_BULLET, this.playBombBullet, this);
+        GlobalEventManager.on(GlobalEventManager.EVENT.BOMB_PLAYER, this.playBombPlayer, this);
+        this.audioSource = this.node.getComponent(AudioSource);
     }
 
     update(deltaTime: number) {
@@ -47,7 +55,27 @@ export class enemyControl extends Component {
         anim.play("");
         this.hasPlayed = true;
     }
-    
+
+    playBombBullet(){
+        try {
+            this.audioSource.volume = 0.5;
+            this.audioSource.playOneShot(this.bomb_bullet);
+            console.log("成功播放");
+        } catch (error) {
+            console.error("播放失败:", error);            
+        }
+    }
+
+    playBombPlayer(){
+        try{
+            this.audioSource.volume = 0.5;
+            this.audioSource.playOneShot(this.bomb_player);
+            console.log("成功播放");
+        }catch(error){
+            console.error("播放失败:", error);
+        }
+    }
+
 }   
 
 

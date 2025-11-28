@@ -1,4 +1,5 @@
 import { _decorator, Component, EventTouch, Node, Prefab, v3 ,instantiate} from 'cc';
+import { GlobalEventManager } from '../utils/GlobalEventManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('playerController')
@@ -25,7 +26,8 @@ export class playerController extends Component {
         
     }
     collision(){
-        console.log("检测到碰撞");
+        GlobalEventManager.emit(GlobalEventManager.EVENT.HIT_PLAYER);
+        // console.log("检测到碰撞");
     }
 }
 
