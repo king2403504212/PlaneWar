@@ -11,7 +11,7 @@
     "6c48a": {
       "importer": "texture",
       "uuid": "84da3f7b-e3e0-453b-a801-91a2c33981c7@6c48a",
-      "displayName": "封面_102",
+      "displayName": "button_00026",
       "id": "6c48a",
       "name": "texture",
       "userData": {
@@ -35,7 +35,7 @@
     "f9941": {
       "importer": "sprite-frame",
       "uuid": "84da3f7b-e3e0-453b-a801-91a2c33981c7@f9941",
-      "displayName": "封面_102",
+      "displayName": "button_00026",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
