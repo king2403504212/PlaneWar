@@ -1,4 +1,4 @@
-import { _decorator, Component, EventTouch, Node, Prefab, v3 ,instantiate} from 'cc';
+import { _decorator, Component, EventTouch, Node, Prefab, v3 ,instantiate, find, UITransform} from 'cc';
 import { GlobalEventManager } from '../utils/GlobalEventManager';
 const { ccclass, property } = _decorator;
 
@@ -8,10 +8,13 @@ export class playerController extends Component {
     bullet : Prefab = null;
     start() {
         this.node.on(Node.EventType.TOUCH_MOVE,(e :EventTouch)=>{
-            const{ x, y} = e.getUILocation(); // 获取鼠标坐标（单位：设计分辨率像素 ==> 设计时的分辨率大小 ) 
-            // console.log("检测到移动,当前x轴坐标：",x,"y轴坐标：" ,y);
-            // if(x < 85 || x >470 || y > 700 || y < 60) return;
-            this.node.setWorldPosition(v3(x, y));   
+            const canvas  = find("Canvas");
+            const uitransfrom = canvas.getComponent(UITransform);
+            const uiPos = e.getUILocation(); // 获取鼠标坐标（单位：设计分辨率像素 ==> 设计时的分辨率大小 ) 
+            const {x, y} = uitransfrom.convertToNodeSpaceAR(v3(uiPos.x, uiPos.y,0));
+            // x  172    y 375
+            if(x > 172 || x < -172 || y > 375 || y < -375) return;
+            else this.node.setWorldPosition(v3(x, y));   
         })
 
         this.schedule(()=>{

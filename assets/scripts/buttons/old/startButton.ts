@@ -1,5 +1,5 @@
 import { _decorator, Component, director, Node, tween, Vec3 } from 'cc';
-import { GlobalEventManager } from '../utils/GlobalEventManager';
+import { GlobalEventManager } from '../../utils/GlobalEventManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('startButton')
